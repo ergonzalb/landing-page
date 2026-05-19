@@ -322,220 +322,160 @@
       box-shadow: 0 10px 28px rgba(255,122,0,.35);
       transition: transform .15s, box-shadow .15s;
       margin-top: .2rem;
+      letter-spacing: .01em;
     }
-    .popup-submit:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 36px rgba(255,122,0,.5);
-    }
-    .popup-submit:disabled { opacity: .6; cursor: not-allowed; }
+    .popup-submit:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(255,122,0,.5); }
+    .popup-submit:disabled { opacity: .6; cursor: not-allowed; transform: none; }
 
     .popup-fine {
-      font-size: .8rem; text-align: center; color: rgba(255,255,255,.4);
-      margin-top: .2rem;
+      font-size: .76rem; color: rgba(255,255,255,.3);
+      text-align: center; margin-top: .6rem;
     }
 
     /* success state */
     .popup-success {
       display: none;
-      padding: 3rem 2rem;
+      padding: 3rem 2.2rem;
       text-align: center;
     }
-
     .success-icon {
-      width: 80px; height: 80px; margin: 0 auto 1.5rem;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(20,184,106,.2), rgba(5,150,105,.15));
-      border: 2px solid rgba(20,184,106,.4);
-      display: grid; place-items: center;
-      font-size: 2.4rem; color: #14b86a;
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, #13b86a, #0d9455);
+      display: grid; place-items: center; margin: 0 auto 1.2rem;
+      font-size: 2rem;
+      box-shadow: 0 8px 28px rgba(19,184,106,.4);
     }
+    .popup-success h3 { font-size: 1.8rem; font-weight: 900; margin-bottom: .5rem; }
+    .popup-success p { color: rgba(255,255,255,.6); font-size: 1rem; line-height: 1.5; }
 
-    .popup-success h3 {
-      font-size: 2rem; font-weight: 900; margin-bottom: .8rem;
-    }
+    footer { padding: 0 0 2.4rem; text-align: center; color: rgba(255,255,255,.25); font-size: .85rem; }
 
-    .popup-success p {
-      font-size: .95rem; color: rgba(255,255,255,.7); max-width: 40ch; margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero-grid, .band-grid { grid-template-columns: 1fr; }
-      .cols-3 { grid-template-columns: 1fr; }
+      .hero-grid, .cols-3, .band-grid { grid-template-columns: 1fr; }
       .input-row { grid-template-columns: 1fr; }
+      .popup-header, .popup-perks, .popup-form-area { padding-left: 1.4rem; padding-right: 1.4rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <!-- HERO -->
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- ══ HERO ══ -->
   <section class="hero">
     <div class="wrap">
       <div class="hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">✨ FREE RESOURCE</div>
-          <h1 class="headline">The Content‑With‑a‑Door Map</h1>
-          <p class="sub">
-            A simple checklist for creators who want more subscribers, leads, and sales
-            <strong>without</strong> making their channel feel pushy or salesy.
-          </p>
 
+        <!-- LEFT -->
+        <div class="reveal-left">
+          <span class="eyebrow">Free Checklist for Creators</span>
+          <h1 class="headline">Turn helpful YouTube content into content that drives action.</h1>
+          <p class="sub">Get <strong>The Content-With-a-Door Map</strong> — a free checklist for creators who want more subscribers, leads, and sales without making their channel feel pushy.</p>
           <div class="bullets">
             <div class="bullet">
               <div class="dot">✓</div>
-              <span>Create content people love <em>and</em> build your email list naturally</span>
+              <span>See whether your video should build <strong>Discovery</strong>, <strong>Trust</strong>, or <strong>Direction</strong>.</span>
             </div>
             <div class="bullet">
               <div class="dot">✓</div>
-              <span>Turn viewers into subscribers (without begging for sign-ups)</span>
+              <span>Match the CTA to the viewer's real intent so the next step feels natural.</span>
             </div>
             <div class="bullet">
               <div class="dot">✓</div>
-              <span>Get a clear, repeatable system that works on any platform</span>
+              <span>Use one repeatable framework before you script your next video.</span>
             </div>
-          </div>
-
-          <div class="cta-col">
-            <button class="btn btn-primary" onclick="openPopup()">Yes! I Want the Free Map →</button>
-            <p class="micro">🔒 Your info is safe. No spam, ever. Unsubscribe anytime.</p>
           </div>
         </div>
 
-        <div class="reveal reveal-delay-1">
+        <!-- RIGHT: video + CTA -->
+        <div class="reveal-right">
           <div class="video-wrap">
             <iframe
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-              title="Content With a Door Map Demo"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              src="https://player.vimeo.com/video/1190855162?badge=0&autopause=0&player_id=0&app_id=58479"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media"
+              title="Content-With-a-Door Map"
             ></iframe>
           </div>
-          <div class="access-card dark" onclick="openPopup()">
-            <h3>🎁 Get Instant Access</h3>
-            <p>Plus: Summit Replays, Members Area & More</p>
+          <div class="cta-col">
+            <button class="btn btn-primary" onclick="openPopup()">Get the Free Content Map</button>
+            <span class="micro">Includes the checklist + bonus callouts</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <!-- PAIN CARDS -->
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <section class="pain-row">
-    <div class="wrap">
-      <div class="cols-3">
-        <div class="box reveal reveal-delay-1">
-          <h3>🚫 You're creating content but not building your list</h3>
-          <p>
-            Every video, post, or piece of content you make disappears into the algorithm.
-            No email, no subscribers, no way to reach your audience directly.
-          </p>
-        </div>
-        <div class="box reveal reveal-delay-2">
-          <h3>😬 You feel pushy asking for sign-ups</h3>
-          <p>
-            You don't want to be "that person" who constantly begs for emails.
-            But without a system, you're leaving money and momentum on the table.
-          </p>
-        </div>
-        <div class="box reveal reveal-delay-3">
-          <h3>🤷 You're not sure what to offer as a lead magnet</h3>
-          <p>
-            Should it be a PDF? A course? A template? A webinar? You're stuck overthinking
-            instead of shipping something that actually converts.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <!-- BANNER IMAGE 1 -->
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <section class="banner-section">
-    <div class="wrap reveal">
-      <img
-        src="https://placehold.co/1160x500/1e3a8a/ffffff?text=Your+Banner+Image+Here+%281160x500%29"
-        alt="Content with a door visual"
-        onclick="openPopup()"
-      />
-      <div class="access-card light" onclick="openPopup()">
-        <h3>🎯 Unlock the Full Strategy</h3>
-        <p>Get the Content-With-a-Door Map + Bonus Training</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <!-- BOTTOM BAND (WHAT YOU GET) -->
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <section class="bottom-row">
+  <!-- ══ BOTTOM BAND ══ -->
+  <div class="bottom-row">
     <div class="wrap">
       <div class="bottom-card reveal">
         <div class="band-grid">
           <div>
-            <h2>Here's What You're Getting (Free)</h2>
-            <p>
-              This isn't just a checklist. It's the exact system used by successful creators
-              to turn content into subscribers, leads, and sales — without being salesy.
-            </p>
-            <button class="btn btn-primary" onclick="openPopup()">
-              Yes! Give Me Instant Access →
-            </button>
+            <h2>Use this before your next video idea becomes another "helpful but non-converting" upload.</h2>
+            <p>This checklist helps you map the job of the video, define the door, and write a CTA that feels earned.</p>
+            <button class="btn btn-primary" style="max-width:280px;" onclick="openPopup()">Show Me the Checklist</button>
           </div>
-
           <div class="stack">
             <div class="box">
-              <h3>📋 The Content-With-a-Door Checklist</h3>
-              <p>Step-by-step map for creating content that grows your list naturally.</p>
+              <h3>Fast to use</h3>
+              <p>Built to take around 10 minutes.</p>
             </div>
             <div class="box">
-              <h3>🎥 Summit Replays</h3>
-              <p>Real creator stories and strategies that are working right now.</p>
-            </div>
-            <div class="box">
-              <h3>🗂️ Members Area Access</h3>
-              <p>Bonus templates, swipes, and resources to accelerate your results.</p>
+              <h3>Designed for creators</h3>
+              <p>Made for YouTube creators who want more conversions from existing content.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <!-- BANNER IMAGE 2 -->
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <section class="banner-section">
-    <div class="wrap reveal">
-      <img
-        src="https://placehold.co/1160x500/7c3aed/ffffff?text=Another+Visual+Section+%281160x500%29"
-        alt="Another compelling visual"
-        onclick="openPopup()"
-      />
-      <div class="access-card purple" onclick="openPopup()">
-        <h3>🚀 Ready to Build Your List?</h3>
-        <p>Click to get your free Content-With-a-Door Map now</p>
+  <!-- ══ BANNER 1: CLAW LAUNCHER — BLACK ══ -->
+  <section class="banner-section reveal" style="background:#000;">
+    <div class="wrap">
+      <img src="https://global-control.s3.wasabisys.com/843b8739_b87a_4ef4_b2db_33c81994f0f4" alt="Claw Launcher" onclick="openPopup()" />
+      <div class="access-card dark reveal reveal-delay-1" onclick="openPopup()">
+        <h3>🚀 Access Claw Launcher</h3>
+        <p>You'll also receive Summit replays + Members Area.</p>
       </div>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
-  <!-- POPUP OVERLAY -->
-  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- ══ BANNER 2: MEMBERSHIP ══ -->
+  <section class="banner-section reveal" style="background:#EEEFFB;">
+    <div class="wrap">
+      <img src="https://global-control.s3.wasabisys.com/f5214837_61fb_48bc_b53f_4ffd8d93c846" alt="OpenClaw Membership" onclick="openPopup()" />
+      <div class="access-card light reveal reveal-delay-1" onclick="openPopup()">
+        <h3>🎓 Join the Members Area</h3>
+        <p>Step-by-step training, exclusive community, real results.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ BANNER 3: SUMMIT ══ -->
+  <section class="banner-section reveal" style="background:#130a2a;">
+    <div class="wrap">
+      <img src="https://global-control.s3.wasabisys.com/c88df146_1f7c_4c6f_b4a0_e949ff5bbaaa" alt="OpenClaw Summit" onclick="openPopup()" />
+      <div class="access-card purple reveal reveal-delay-1" onclick="openPopup()">
+        <h3>🎤 Watch the Summit Replays</h3>
+        <p>Real stories. Real results. Real impact.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 · All rights reserved</footer>
+
+  <!-- ══ POPUP ══ -->
   <div class="popup-overlay" id="popup-overlay" onclick="closeOnOverlay(event)">
     <div class="popup">
-      <div class="popup-close" onclick="closePopup()">✕</div>
+      <button class="popup-close" onclick="closePopup()">✕</button>
 
       <div id="popup-form-wrap">
         <div class="popup-header">
-          <div class="popup-badge">🎁 FREE ACCESS</div>
-          <h2>Get Everything You Need to Start Building Your List Today</h2>
-          <p>Enter your info below and get instant access to the complete package.</p>
+          <div class="popup-badge">🎉 Free — No Credit Card Required</div>
+          <h2>Get Everything.<br/>All At Once.</h2>
+          <p>Enter your details below and you'll get instant access to all of this — free.</p>
         </div>
 
         <div class="popup-perks">
@@ -543,18 +483,18 @@
             <div class="perk-icon gold">🚀</div>
             <div class="perk-text">
               <strong>Claw Launcher</strong>
-              <span>Your AI-powered assistant for marketing and growth</span>
+              <span>Your gateway to run OpenClaw — secure, private, powerful</span>
             </div>
           </div>
           <div class="perk">
-            <div class="perk-icon blue">🗂️</div>
+            <div class="perk-icon blue">🎓</div>
             <div class="perk-text">
-              <strong>Members Area</strong>
-              <span>Templates, swipes, and bonus resources</span>
+              <strong>OpenClaw Members Area</strong>
+              <span>Step-by-step training, courses, badges & community</span>
             </div>
           </div>
           <div class="perk">
-            <div class="perk-icon purple">🎥</div>
+            <div class="perk-icon purple">🎤</div>
             <div class="perk-text">
               <strong>The Summit Replays</strong>
               <span>Real stories, real results from real OpenClaw users</span>
@@ -650,4 +590,8 @@
       });
     }, { threshold: 0.12 });
 
-    rev
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
