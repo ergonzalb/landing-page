@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Content-With-a-Door Map</title>
+  <meta name="description" content="A free checklist for creators who want more subscribers, leads, and sales without making their channel feel pushy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #ffb400;
+      --orange: #ff7a00;
+      --ink: #10203e;
+      --muted: #4b5b7a;
+      --line: rgba(16,32,62,.12);
+      --shadow: 0 18px 50px rgba(4,16,40,.22);
+      --radius: 24px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+      color: #fff;
+      background: radial-gradient(circle at top, #2e6bff 0%, #123c8f 28%, #07142d 76%);
+      min-height: 100vh;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    .wrap { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-delay-1 { transition-delay: .1s; }
+    .reveal-delay-2 { transition-delay: .2s; }
+    .reveal-delay-3 { transition-delay: .3s; }
+
+    /* ── HERO ── */
+    .hero { padding: 3rem 0 2rem; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: .45rem .8rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      font-weight: 800;
+      letter-spacing: .03em;
+      font-size: .9rem;
+      margin-bottom: .5rem;
+    }
+    .headline {
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: .95;
+      letter-spacing: -.045em;
+      font-weight: 900;
+      margin: 1rem 0;
+    }
+    .sub {
+      font-size: 1.12rem;
+      max-width: 60ch;
+      color: rgba(255,255,255,.88);
+      margin-bottom: 1.4rem;
+    }
+    .bullets { display: grid; gap: .85rem; margin-bottom: 1.8rem; }
+    .bullet { display: flex; gap: .75rem; align-items: flex-start; }
+    .dot {
+      width: 1.4rem; height: 1.4rem; flex: 0 0 auto;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      display: grid; place-items: center;
+      color: #10203e; font-size: .8rem; font-weight: 900; margin-top: .15rem;
+    }
+
+    /* ── VIDEO ── */
+    .video-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      background: #0d1a3a;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .video-wrap iframe {
+      width: 100%; aspect-ratio: 16/9; display: block; border: none;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 56px; padding: 0 1.6rem; border-radius: 999px;
+      font-weight: 900; font-size: 1rem; font-family: inherit;
+      cursor: pointer; border: none;
+      transition: transform .18s ease, box-shadow .18s ease;
+      width: 100%;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      color: #10203e;
+      box-shadow: 0 14px 32px rgba(255,122,0,.28);
+    }
+    .btn-primary:hover { box-shadow: 0 18px 40px rgba(255,122,0,.45); }
+    .micro { font-size: .94rem; color: rgba(255,255,255,.8); text-align: center; }
+    .cta-col { display: flex; flex-direction: column; gap: .6rem; }
+
+    /* ── PAIN CARDS ── */
+    .pain-row { padding: 1.2rem 0 2rem; }
+    .cols-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+    .box {
+      padding: 1.25rem; border-radius: 20px; background: #fff;
+      border: 1px solid var(--line); box-shadow: var(--shadow); color: var(--ink);
+    }
+    .box h3 { margin: .2rem 0 .5rem; font-size: 1rem; font-weight: 800; }
+    .box p { font-size: .95rem; color: var(--muted); line-height: 1.55; }
+
+    /* ── BOTTOM BAND ── */
+    .bottom-row { padding: 0 0 3rem; }
+    .bottom-card {
+      background: rgba(255,255,255,.9); border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius); box-shadow: var(--shadow); color: var(--ink); padding: 1.4rem;
+    }
+    .band-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 1rem; align-items: center; }
+    .band-grid h2 {
+      font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.02;
+      letter-spacing: -.03em; font-weight: 900; margin-bottom: 1rem; color: var(--ink);
+    }
+    .band-grid p { font-size: .95rem; color: var(--muted); margin-bottom: 1.4rem; line-height: 1.55; }
+    .stack { display: grid; gap: .9rem; }
+    .stack .box h3 { font-size: .95rem; }
+    .stack .box p { font-size: .88rem; }
+
+    /* ── BANNER SECTIONS ── */
+    .banner-section { padding: 3.5rem 0; }
+    .banner-section img {
+      width: 100%; display: block; border-radius: var(--radius);
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .banner-section img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 32px 72px rgba(0,0,0,.6);
+    }
+
+    /* ── ACCESS BUTTON CARD ── */
+    .access-card {
+      margin-top: 1.5rem;
+      border-radius: 20px;
+      padding: 1.6rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .access-card:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,.4); }
+    .access-card.dark { background: rgba(10,15,40,.85); }
+    .access-card.light { background: rgba(30,20,70,.9); color: #fff; }
+    .access-card.purple { background: rgba(20,10,50,.9); }
+    .access-card h3 { font-size: 1.4rem; font-weight: 900; letter-spacing: -.02em; }
+    .access-card p { font-size: .9rem; opacity: .7; }
+
+    /* ── POPUP OVERLAY ── */
+    .popup-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
+      align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .popup-overlay.open { display: flex; }
+
+    /* ── POPUP ── */
+    .popup {
+      background: linear-gradient(160deg, #0d1f52 0%, #07122e 100%);
+      border: 1px solid rgba(100,140,255,.25);
+      border-radius: 32px;
+      width: min(580px, 100%);
+      position: relative;
+      box-shadow: 0 40px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(100,150,255,.15), inset 0 1px 0 rgba(255,255,255,.08);
+      animation: popIn .3s cubic-bezier(.175,.885,.32,1.275);
+      overflow: hidden;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(.92) translateY(16px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* glow top bar */
+    .popup::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--orange), #ff4eb8, #a855f7);
+    }
+
+    .popup-close {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      cursor: pointer; color: rgba(255,255,255,.6); font-size: 1rem;
+      display: grid; place-items: center;
+      transition: background .15s, color .15s; z-index: 1;
+    }
+    .popup-close:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+    /* popup header */
+    .popup-header {
+      padding: 2.2rem 2.2rem 0;
+      text-align: center;
+    }
+
+    .popup-badge {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .4rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,180,0,.15), rgba(255,122,0,.1));
+      color: var(--gold); font-size: .8rem; font-weight: 800;
+      letter-spacing: .06em; text-transform: uppercase;
+      border: 1px solid rgba(255,180,0,.25);
+      margin-bottom: 1.2rem;
+    }
+
+    .popup-header h2 {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 900; line-height: 1.1; letter-spacing: -.03em;
+      margin-bottom: .6rem;
+    }
+
+    .popup-header p {
+      font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.5;
+    }
+
+    /* what you get */
+    .popup-perks {
+      display: grid; gap: .6rem;
+      padding: 1.4rem 2.2rem;
+    }
+
+    .perk {
+      display: flex; align-items: center; gap: .85rem;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 14px; padding: .85rem 1rem;
+      transition: background .15s;
+    }
+    .perk:hover { background: rgba(255,255,255,.08); }
+
+    .perk-icon {
+      width: 40px; height: 40px; flex-shrink: 0; border-radius: 12px;
+      display: grid; place-items: center; font-size: 1.2rem;
+    }
+    .perk-icon.gold { background: linear-gradient(135deg, rgba(255,180,0,.2), rgba(255,122,0,.15)); }
+    .perk-icon.blue { background: linear-gradient(135deg, rgba(50,120,255,.25), rgba(30,80,200,.2)); }
+    .perk-icon.purple { background: linear-gradient(135deg, rgba(168,85,247,.25), rgba(109,40,217,.2)); }
+    .perk-icon.green { background: linear-gradient(135deg, rgba(20,184,106,.25), rgba(5,150,105,.2)); }
+
+    .perk-text strong { display: block; font-size: .95rem; font-weight: 800; }
+    .perk-text span { font-size: .82rem; color: rgba(255,255,255,.5); }
+
+    /* form area */
+    .popup-form-area { padding: 0 2.2rem 2.2rem; }
+
+    .popup-form { display: grid; gap: .7rem; }
+
+    .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+
+    .popup-form input {
+      width: 100%; padding: .9rem 1.1rem;
+      border-radius: 12px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #fff; font-size: .95rem; font-family: inherit;
+      transition: border-color .15s, background .15s;
+      outline: none;
+    }
+    .popup-form input::placeholder { color: rgba(255,255,255,.3); }
+    .popup-form input:focus {
+      border-color: rgba(100,150,255,.5);
+      background: rgba(255,255,255,.1);
+    }
+
+    .popup-submit {
+      width: 100%; padding: 1.05rem; border-radius: 14px; border: none;
+      background: linear-gradient(135deg, var(--gold), var(--orange));
+      color: #10203e; font-size: 1.05rem; font-weight: 900;
+      font-family: inherit; cursor: pointer;
+      box-shadow: 0 10px 28px rgba(255,122,0,.35);
+      transition: transform .15s, box-shadow .15s;
+      margin-top: .2rem;
+    }
+    .popup-submit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 36px rgba(255,122,0,.5);
+    }
+    .popup-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+    .popup-fine {
+      font-size: .8rem; text-align: center; color: rgba(255,255,255,.4);
+      margin-top: .2rem;
+    }
+
+    /* success state */
+    .popup-success {
+      display: none;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 80px; height: 80px; margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(20,184,106,.2), rgba(5,150,105,.15));
+      border: 2px solid rgba(20,184,106,.4);
+      display: grid; place-items: center;
+      font-size: 2.4rem; color: #14b86a;
+    }
+
+    .popup-success h3 {
+      font-size: 2rem; font-weight: 900; margin-bottom: .8rem;
+    }
+
+    .popup-success p {
+      font-size: .95rem; color: rgba(255,255,255,.7); max-width: 40ch; margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-grid, .band-grid { grid-template-columns: 1fr; }
+      .cols-3 { grid-template-columns: 1fr; }
+      .input-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- HERO -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">✨ FREE RESOURCE</div>
+          <h1 class="headline">The Content‑With‑a‑Door Map</h1>
+          <p class="sub">
+            A simple checklist for creators who want more subscribers, leads, and sales
+            <strong>without</strong> making their channel feel pushy or salesy.
+          </p>
+
+          <div class="bullets">
+            <div class="bullet">
+              <div class="dot">✓</div>
+              <span>Create content people love <em>and</em> build your email list naturally</span>
+            </div>
+            <div class="bullet">
+              <div class="dot">✓</div>
+              <span>Turn viewers into subscribers (without begging for sign-ups)</span>
+            </div>
+            <div class="bullet">
+              <div class="dot">✓</div>
+              <span>Get a clear, repeatable system that works on any platform</span>
+            </div>
+          </div>
+
+          <div class="cta-col">
+            <button class="btn btn-primary" onclick="openPopup()">Yes! I Want the Free Map →</button>
+            <p class="micro">🔒 Your info is safe. No spam, ever. Unsubscribe anytime.</p>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1">
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              title="Content With a Door Map Demo"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="access-card dark" onclick="openPopup()">
+            <h3>🎁 Get Instant Access</h3>
+            <p>Plus: Summit Replays, Members Area & More</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- PAIN CARDS -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="pain-row">
+    <div class="wrap">
+      <div class="cols-3">
+        <div class="box reveal reveal-delay-1">
+          <h3>🚫 You're creating content but not building your list</h3>
+          <p>
+            Every video, post, or piece of content you make disappears into the algorithm.
+            No email, no subscribers, no way to reach your audience directly.
+          </p>
+        </div>
+        <div class="box reveal reveal-delay-2">
+          <h3>😬 You feel pushy asking for sign-ups</h3>
+          <p>
+            You don't want to be "that person" who constantly begs for emails.
+            But without a system, you're leaving money and momentum on the table.
+          </p>
+        </div>
+        <div class="box reveal reveal-delay-3">
+          <h3>🤷 You're not sure what to offer as a lead magnet</h3>
+          <p>
+            Should it be a PDF? A course? A template? A webinar? You're stuck overthinking
+            instead of shipping something that actually converts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- BANNER IMAGE 1 -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="banner-section">
+    <div class="wrap reveal">
+      <img
+        src="https://placehold.co/1160x500/1e3a8a/ffffff?text=Your+Banner+Image+Here+%281160x500%29"
+        alt="Content with a door visual"
+        onclick="openPopup()"
+      />
+      <div class="access-card light" onclick="openPopup()">
+        <h3>🎯 Unlock the Full Strategy</h3>
+        <p>Get the Content-With-a-Door Map + Bonus Training</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- BOTTOM BAND (WHAT YOU GET) -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="bottom-row">
+    <div class="wrap">
+      <div class="bottom-card reveal">
+        <div class="band-grid">
+          <div>
+            <h2>Here's What You're Getting (Free)</h2>
+            <p>
+              This isn't just a checklist. It's the exact system used by successful creators
+              to turn content into subscribers, leads, and sales — without being salesy.
+            </p>
+            <button class="btn btn-primary" onclick="openPopup()">
+              Yes! Give Me Instant Access →
+            </button>
+          </div>
+
+          <div class="stack">
+            <div class="box">
+              <h3>📋 The Content-With-a-Door Checklist</h3>
+              <p>Step-by-step map for creating content that grows your list naturally.</p>
+            </div>
+            <div class="box">
+              <h3>🎥 Summit Replays</h3>
+              <p>Real creator stories and strategies that are working right now.</p>
+            </div>
+            <div class="box">
+              <h3>🗂️ Members Area Access</h3>
+              <p>Bonus templates, swipes, and resources to accelerate your results.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- BANNER IMAGE 2 -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <section class="banner-section">
+    <div class="wrap reveal">
+      <img
+        src="https://placehold.co/1160x500/7c3aed/ffffff?text=Another+Visual+Section+%281160x500%29"
+        alt="Another compelling visual"
+        onclick="openPopup()"
+      />
+      <div class="access-card purple" onclick="openPopup()">
+        <h3>🚀 Ready to Build Your List?</h3>
+        <p>Click to get your free Content-With-a-Door Map now</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <!-- POPUP OVERLAY -->
+  <!-- ══════════════════════════════════════════════════════════════════════════ -->
+  <div class="popup-overlay" id="popup-overlay" onclick="closeOnOverlay(event)">
+    <div class="popup">
+      <div class="popup-close" onclick="closePopup()">✕</div>
+
+      <div id="popup-form-wrap">
+        <div class="popup-header">
+          <div class="popup-badge">🎁 FREE ACCESS</div>
+          <h2>Get Everything You Need to Start Building Your List Today</h2>
+          <p>Enter your info below and get instant access to the complete package.</p>
+        </div>
+
+        <div class="popup-perks">
+          <div class="perk">
+            <div class="perk-icon gold">🚀</div>
+            <div class="perk-text">
+              <strong>Claw Launcher</strong>
+              <span>Your AI-powered assistant for marketing and growth</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon blue">🗂️</div>
+            <div class="perk-text">
+              <strong>Members Area</strong>
+              <span>Templates, swipes, and bonus resources</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon purple">🎥</div>
+            <div class="perk-text">
+              <strong>The Summit Replays</strong>
+              <span>Real stories, real results from real OpenClaw users</span>
+            </div>
+          </div>
+          <div class="perk">
+            <div class="perk-icon green">📅</div>
+            <div class="perk-text">
+              <strong>Enrolled in the Next OpenClaw Summit</strong>
+              <span>You're automatically registered for the upcoming live event</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup-form-area">
+          <form class="popup-form" onsubmit="submitPopup(event)">
+            <div class="input-row">
+              <input type="text" id="popup-fname" placeholder="First Name" required autocomplete="given-name" />
+              <input type="text" id="popup-lname" placeholder="Last Name" autocomplete="family-name" />
+            </div>
+            <input type="email" id="popup-email" placeholder="Email Address" required autocomplete="email" />
+            <button type="submit" class="popup-submit" id="popup-btn">Yes! Give Me Access to Everything →</button>
+            <p class="popup-fine">🔒 Your info is safe. No spam, ever. Unsubscribe anytime.</p>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup-success" id="popup-success">
+        <div class="success-icon">✓</div>
+        <h3>You're In!</h3>
+        <p>Check your inbox — your access to Claw Launcher, Members Area, Summit Replays, and your Summit enrollment is on the way!</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const GC_API_KEY = 'YOUR_API_KEY_HERE';
+
+    // ── POPUP ──
+    function openPopup() {
+      document.getElementById('popup-form-wrap').style.display = 'block';
+      document.getElementById('popup-success').style.display = 'none';
+      document.getElementById('popup-btn').disabled = false;
+      document.getElementById('popup-btn').textContent = 'Yes! Give Me Access to Everything →';
+      document.getElementById('popup-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePopup() {
+      document.getElementById('popup-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function closeOnOverlay(e) {
+      if (e.target === document.getElementById('popup-overlay')) closePopup();
+    }
+
+    async function submitPopup(e) {
+      e.preventDefault();
+      const btn = document.getElementById('popup-btn');
+      const firstName = document.getElementById('popup-fname').value.trim();
+      const lastName = document.getElementById('popup-lname').value.trim();
+      const email = document.getElementById('popup-email').value.trim();
+
+      btn.disabled = true;
+      btn.textContent = 'Getting Your Access Ready…';
+
+      try {
+        await fetch('https://api.globalcontrol.io/api/ai/contacts', {
+          method: 'POST',
+          headers: { 'X-API-KEY': GC_API_KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, lastName, email })
+        });
+      } catch (err) {
+        console.error('GC error:', err);
+      }
+
+      document.getElementById('popup-form-wrap').style.display = 'none';
+      document.getElementById('popup-success').style.display = 'block';
+      setTimeout(closePopup, 4000);
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopup(); });
+
+    // ── SCROLL REVEAL ──
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    rev
